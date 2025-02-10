@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purple White Themed Fact Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Light background */
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #6a0dad; /* Purple text for headings */
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #6a0dad; /* Purple background */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5a0a9d; /* Darker purple on hover */
+        }
+
+        .fact {
+            padding: 20px;
+            background-color: white; /* White background for facts */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0; /* Start hidden */
+            transform: scale(0.8); /* Start scaled down */
+        }
+
+        .fact.show {
+            opacity: 1; /* Fade in */
+            transform: scale(1); /* Scale up */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Purple White Themed Fact Generator</h1>
+        <p id="fact" class="fact">Click the button to generate a random fact!</p>
+        <button id="generate-button">Generate Fact</button>
+    </div>
+    <script>
+        const facts = [
+            "Honey never spoils.",
+            "A group of flamingos is called a 'flamboyance'.",
+            "Bananas are berries, but strawberries aren't.",
+            "Octopuses have three hearts.",
+            "Wombat poop is cube-shaped.",
+            "A jiffy is an actual unit of time: 1/100th of a second.",
+            "The Eiffel Tower can be 15 cm taller during the summer."
+        ];
+
+        document.getElementById('generate-button').addEventListener('click', function() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            const factElement = document.getElementById('fact');
+            
+            // Remove the 'show' class to trigger the animation
+            factElement.classList.remove('show');
+
+            // Update the fact text
+            factElement.textContent = facts[randomIndex];
+
+            // Force reflow to restart the animation
+            void factElement.offsetWidth;
+
+            // Add the 'show' class to trigger the fade-in and scale-up animation
+            factElement.classList.add('show');
+        });
+    </script>
+</body>
+</html>
